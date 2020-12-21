@@ -1,3 +1,15 @@
+.tab{
+  min-width: 20px;
+  background-color: rgb(208, 209, 223);
+}
+.todoselected{
+  background-color: greenyellow;
+  min-width: 600px;
+}
+.todo{
+  background-color: rgb(240, 199, 199);
+  min-width: 600px;
+}
 .App {
   margin: auto;
   width: 500px;

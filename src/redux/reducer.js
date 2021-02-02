@@ -4,19 +4,19 @@ const initialState = {
   
   const reducer  = (state = initialState, action) => {
     switch(action.type) {
-      case 'load':
+      case 'todos/load/succes':
         return {
           ...state,
           todos: action.payload,
           loading: false
         }
-      case 'start':
+      case 'todos/load/start':
         return{
           ...state,
           loading: true
         } 
   
-      case 'startDeleting':
+      case 'todos/remove/start':
         return {
           ...state,
           todos: state.todos.map((todo) => {
@@ -30,13 +30,13 @@ const initialState = {
           })
         }
   
-      case 'delete':
+      case 'todos/remove/succes':
         return{
           ...state,
           todos: state.todos.filter((todo) => todo.id !== action.payload)
         } 
   
-      case 'check':
+      case 'todos/check/succes':
         return{
           ...state,
           todos: state.todos.map((todo) => {
@@ -51,7 +51,7 @@ const initialState = {
           })
         }
   
-        case 'startChecking':
+        case 'todos/check/start':
           return{
             ...state,
             todos: state.todos.map((todo) => {

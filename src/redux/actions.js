@@ -1,13 +1,13 @@
 export function loadTodos () {
     return (dispatch) => {
         dispatch({
-            type: 'start'
+            type: 'todos/load/start'
         })
-        fetch("https://jsonplaceholder.typicode.com/todos?_limit=10")
+        fetch("https://jsonplaceholder.typicode.com/todos")
             .then(response => response.json())
             .then(json=>{
                 dispatch({
-                    type: 'load',
+                    type: 'todos/load/succes',
                     payload: json
                 })
             })
@@ -17,16 +17,16 @@ export function loadTodos () {
 export function removeTodo (id) {
     return (dispatch) => {
         dispatch({
-            type: 'startDeleting',
+            type: 'todos/remove/start',
             payload: id
         })
-        fetch(`https://jsonplaceholder.typicode.com/todos?_limit=10/${id}`,{
+        fetch(`https://jsonplaceholder.typicode.com/todos/${id}`,{
             method: 'DELETE'
         })
             .then(response => response.json())
             .then(()=>{
                 dispatch({
-                    type: 'delete',
+                    type: 'todos/remove/succes',
                     payload: id
                 })
             })
@@ -36,10 +36,10 @@ export function removeTodo (id) {
 export function checkTodo (id, completed) {
     return (dispatch) => {
         dispatch({
-            type: 'startChecking',
+            type: 'todos/check/start',
             payload: id
         })
-        fetch(`https://jsonplaceholder.typicode.com/todos?_limit=10/${id}`,{
+        fetch(`https://jsonplaceholder.typicode.com/todos/${id}`,{
             method: 'PATCH',
             body: JSON.stringify({completed: !completed}),
             headers:{"Content-type": "application/json"}
@@ -48,7 +48,7 @@ export function checkTodo (id, completed) {
             .then(response => response.json())
             .then(()=>{
                 dispatch({
-                    type: 'check',
+                    type: 'todos/check/succes',
                     payload: id
                 })
             })
